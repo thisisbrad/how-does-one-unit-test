@@ -2,6 +2,17 @@
 
 Describe basic unit testing in NodeJS. This project is a simple Express server using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/) for testing. This working example has been built for students wanting to write tests on open source projects during [Hacktoberfest](https://hacktoberfest.digitalocean.com/) for practice with testing and contributing.
 
+##### Table of Contents
+
+<!-- toc -->
+
+- [🔬 NodeJS and Mocha Guide to Unit Testing](#nodejs-and-mocha-guide-to-unit-testing)
+- [✏️ Steps for Unit Testing](#️steps-for-unit-testing)
+- [🏆 Goals](#goals)
+- [🛠 Tools](#tools)
+
+<!-- tocstop -->
+
 ### 🔬 NodeJS and Mocha Guide to Unit Testing
 
 The main objective is to explain and use describe(), it(), and before()/etc hooks.
@@ -20,7 +31,10 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 
 ### 🏆 Goals:
 
-- [ ] Create unit test example in Mocha and Chai
+- [x] Create unit test example in Mocha and Chai
+- [ ] Proper Git workflow with feature branches and pull request
+- [ ] Create intergation test example with MongoDB and Supertest
+- [ ] Mock intergation test example with Sinon
 - [ ] Add in Circle CI for testing code once pushed to Github
 - [ ] Deploy to Heroku if test passes
 
