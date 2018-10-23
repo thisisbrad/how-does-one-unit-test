@@ -1,0 +1,37 @@
+{
+  "name": "how-does-one-unit-test",
+  "version": "1.0.0",
+  "description": "Basic testing in Node with Mocha",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisbrad/how-does-one-unit-test.git"
+  },
+  "keywords": [
+    "Node",
+    "Mocha",
+    "Testing"
+  ],
+  "author": "Brad Beltowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thisisbrad/how-does-one-unit-test/issues"
+  },
+  "homepage": "https://github.com/thisisbrad/how-does-one-unit-test#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
