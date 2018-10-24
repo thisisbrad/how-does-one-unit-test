@@ -86,6 +86,19 @@ Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os
 - `nvm use stable`
 - `which node` || `node -v` should now show your version
 
+### 🔑 Keys:
+
+You will need to create `dev.js` in `config/`.
+
+```js
+module.exports = settings => ({
+  mongodb: {
+    uri: 'mongodb://localhost:27017/#YOUR-MONGO-DB#'
+  },
+  ...settings
+});
+```
+
 ### 🛠 Tools:
 
 These tools are optional but really help with testing and code coverage.
