@@ -41,8 +41,8 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 
 ### 📦 Packages:
 
-You will need Node and MongoDB installed. Using Node v10.11.0 and Mongodb v4.0.2 for this demo.
-If you don't have these installed follow this [guide](#guide-to-install-node-and-mongoDB).
+You will need Node and MongoDB installed. Using **Node v10.11.0** and **Mongodb v4.0.2** for this demo.
+If you don't have these installed follow this [guide](#guide-to-install-node-and-mongodb).
 
 Use yarn or npm to install the following packahes. Testing will require these packages:
 
