@@ -1,26 +1,54 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 const { json } = require('body-parser');
 
-const app = express();
+/* Logic to start the application */
+mongoose.Promise = global.Promise;
+mongoose.set('useCreateIndex', true);
 
-const PORT = process.env.PORT || 5000;
-const HOST = process.env.HOST || '127.0.0.1';
+// Connect the db with the uri provided
+try {
+  mongoose.connect(
+    mongodb.uri,
+    { useNewUrlParser: true }
+  );
+} catch (err) {
+  mongoose.createConnection(mongodb.uri, { useNewUrlParser: true });
+}
 
-app.use(json()); // grabs request body
-app.use(morgan('dev')); // logs HTTP request
+// Once connection is established
+mongoose.connection
+  .once('open', () => {
+    console.log('Successfully connected to MongoDB');
 
-app.get('/', (req, res) => {
-  res.json({ howdy: 'Partner!' });
-});
+    /* Start the Node server once connected to MongoDB */
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error(`Not Found (${req.url})`);
-  err.status = 404;
-  next(err);
-});
+    const app = express();
 
-const server = app.listen(PORT, HOST, () => {
-  console.log(`### Server is listening on PORT: ${server.address().port} ###`);
-});
+    const PORT = process.env.PORT || 5000;
+    const HOST = process.env.HOST || '127.0.0.1';
+
+    app.use(json()); // grabs request body
+    app.use(morgan('dev')); // logs HTTP request
+
+    app.get('/', (req, res) => {
+      res.json({ howdy: 'Partner!' });
+    });
+
+    // catch 404 and forward to error handler
+    app.use((req, res, next) => {
+      const err = new Error(`Not Found (${req.url})`);
+      err.status = 404;
+      next(err);
+    });
+
+    const server = app.listen(PORT, HOST, () => {
+      console.log(
+        `### Server is listening on PORT: ${server.address().port} ###`
+      );
+    });
+  })
+  .on('error', error => {
+    throw error;
+  });
