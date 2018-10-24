@@ -1,4 +1,4 @@
-// const dev = require('./dev');
+const dev = require('./dev');
 const prod = require('./prod');
 
 const appname = 'Poovey';

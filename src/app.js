@@ -2,10 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const { json } = require('body-parser');
+const { mongodb } = require('./config');
 
 /* Logic to start the application */
-mongoose.Promise = global.Promise;
-mongoose.set('useCreateIndex', true);
 
 // Connect the db with the uri provided
 try {
