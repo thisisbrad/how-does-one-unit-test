@@ -3,7 +3,7 @@ const { mongodb } = require('../src/config');
 
 before(done => {
   mongoose.connect(
-    'mongodb://localhost:27017/how_does_one_unit_test',
+    mongodb.uri,
     { useNewUrlParser: true }
   );
 
@@ -20,9 +20,10 @@ before(done => {
 
 beforeEach(async () => {
   const { users } = mongoose.connection.collections;
+
   try {
     await users.drop();
   } catch (error) {
-    console.error(error.errmsg);
+    // console.error('bug?', error.errmsg);
   }
 });
