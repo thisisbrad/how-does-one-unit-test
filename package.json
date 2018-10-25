@@ -4,8 +4,9 @@
   "description": "Basic testing in Node with Mocha",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "test": "mocha"
+    "start": "NODE_ENV=production node src/app.js",
+    "dev": "NODE_ENV=development node src/app.js",
+    "test": "NODE_ENV=development mocha --recursive './test/**/*.js' --exit --no-deprecation"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "chai": "^4.2.0",
     "express": "^4.16.4",
     "mocha": "^5.2.0",
+    "mongoose": "^5.3.6",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
