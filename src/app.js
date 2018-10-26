@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const { json } = require('body-parser');
+const routeHandler = require('./routes');
 const { mongodb } = require('./config');
 
 /* Logic to start the application */
@@ -31,9 +32,8 @@ mongoose.connection
     app.use(json()); // grabs request body
     app.use(morgan('dev')); // logs HTTP request
 
-    app.get('/', (req, res) => {
-      res.json({ howdy: 'Partner!' });
-    });
+    // attaches all routes to the app
+    app.use('/', routeHandler());
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {

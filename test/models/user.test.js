@@ -7,7 +7,10 @@ describe('User Model', () => {
     const query = { name: 'Ricky' }; // reuseable query
 
     beforeEach(async () => {
-      ricky = new User(query); // create new User for each test
+      ricky = new User({
+        name: 'Ricky',
+        todos: [{ title: 'Get Grade 10', checked: true }]
+      }); // create new User for each test
       await ricky.save(); // saves user to MongoDB to test querying
     });
 

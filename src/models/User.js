@@ -15,7 +15,13 @@ const UserSchema = new Schema({
     type: String,
     index: { unique: true },
     validate: [validateEmail, '{VALUE} is not a valid email address']
-  }
+  },
+  todos: [
+    {
+      title: String,
+      checked: Boolean
+    }
+  ]
 });
 
 const User = mongoose.model('user', UserSchema);

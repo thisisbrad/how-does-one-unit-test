@@ -20,7 +20,6 @@ before(done => {
 
 beforeEach(async () => {
   const { users } = mongoose.connection.collections;
-
   try {
     await users.drop();
   } catch (error) {
