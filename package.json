@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "start": "NODE_ENV=production node src/app.js",
-    "dev": "NODE_ENV=development node src/app.js",
+    "dev": "NODE_ENV=development nodemon src/app.js",
     "test": "NODE_ENV=development mocha --recursive './test/**/*.js' --exit --no-deprecation"
   },
   "repository": {
@@ -29,7 +29,8 @@
     "express": "^4.16.4",
     "mocha": "^5.2.0",
     "mongoose": "^5.3.6",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.5"
   },
   "devDependencies": {
     "eslint": "^5.7.0",

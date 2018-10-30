@@ -7,6 +7,8 @@ const { mongodb } = require('./config');
 
 /* Logic to start the application */
 
+console.log('HOLLA', mongodb.uri);
+
 // Connect the db with the uri provided
 try {
   mongoose.connect(

@@ -1,5 +1,8 @@
+const User = require('../models/User');
+
 const createTodo = async (req, res) => {
-  const { user } = req;
+  const { userId } = req.params;
+  const user = await User.findById(userId);
   const { todo } = req.body;
   const count = user.todos.push(todo);
   await user.save();
@@ -9,11 +12,11 @@ const createTodo = async (req, res) => {
 
 const deleteTodo = async (req, res) => {
   try {
-    const { user } = req;
-    const { todoId: id } = req.params;
-    user.todos = user.todos.filter(todo => todo._id.toString() !== id);
+    const { todoId, userId } = req.params;
+    const user = await User.findById(userId);
+    user.todos = user.todos.filter(todo => todo._id.toString() !== todoId);
     await user.save();
-    res.json({ success: `Removed ${id} from todos.` });
+    res.json({ success: `Removed ${todoId} from todos.` });
   } catch (error) {
     res.json({ error });
   }
@@ -21,9 +24,11 @@ const deleteTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
   try {
-    const { user } = req;
+    const { userId } = req.params;
+    const user = await User.findById(userId);
     const { index } = req.body;
-    user.todos[index].available = !user.todos[index].available;
+    console.log('User', user.todos, index);
+    user.todos[index].checked = !user.todos[index].checked;
     await user.save();
     res.json(user.todos[index]);
   } catch (error) {
@@ -32,7 +37,11 @@ const updateTodo = async (req, res) => {
 };
 
 const fetchTodos = async (req, res) => {
-  res.json({ todos: req.user.todos });
+  const { userId } = req.params;
+  const results = await User.findById(userId);
+  console.log('id', results);
+
+  res.json({ todos: results.todos });
 };
 
 module.exports = { createTodo, deleteTodo, updateTodo, fetchTodos };

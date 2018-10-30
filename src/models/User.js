@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   todos: [
     {
       title: String,
-      checked: Boolean
+      checked: { type: Boolean, default: false }
     }
   ]
 });
