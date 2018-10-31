@@ -23,4 +23,30 @@ describe('Todos list API Integration Tests', () => {
       assert.lengthOf(res.body.todos, 1);
     });
   });
+
+  describe('#POST /todos - create task ', () => {
+    const todo = {
+      title: 'mow grass'
+    };
+
+    it('should create a task', async () => {
+      try {
+        const res = await request(app)
+          .post(`/todos/${userId}`)
+          .type('json')
+          .set('Content-Type', 'application/json')
+          .send({ title: 'lame' });
+        console.log('DATA???', res.body);
+      } catch (error) {
+        console.log('error', error);
+      }
+
+      // .end((err, res) => {
+      //   expect(res.statusCode).to.equal(200);
+      //   expect(res.body.name).to.equal('integration test');
+      //   task = res.body;
+      //   done();
+      // });
+    });
+  });
 });

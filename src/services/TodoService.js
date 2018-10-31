@@ -4,7 +4,7 @@ const createTodo = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findById(userId);
   const { todo } = req.body;
-  console.log('todo', todo);
+  console.log('todo >>>>>>>>>>>>>>>>>>>', todo);
   const count = user.todos.push(todo);
   await user.save();
   console.log('todos', user.todos);

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const { json } = require('body-parser');
+const { json, urlencoded } = require('body-parser');
 const routeHandler = require('./routes');
 const { mongodb } = require('./config');
 
@@ -20,6 +20,9 @@ try {
 }
 
 const app = express();
+app.use(urlencoded({ extended: false }));
+app.use(json()); // grabs request body
+app.use(morgan('dev')); // logs HTTP request
 
 // Once connection is established
 mongoose.connection
@@ -29,9 +32,6 @@ mongoose.connection
     /* Start the Node server once connected to MongoDB */
     const PORT = process.env.PORT || 5000;
     const HOST = process.env.HOST || '127.0.0.1';
-
-    app.use(json()); // grabs request body
-    app.use(morgan('dev')); // logs HTTP request
 
     // attaches all routes to the app
     app.use('/', routeHandler());
