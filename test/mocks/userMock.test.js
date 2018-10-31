@@ -160,6 +160,7 @@ describe('Mock Testing of Mongoose Model', () => {
         email: 'ricky@sunnyvale.com',
         todos: [{ _id: 12345, title: 'Setup Hockey Camp', checked: false }]
       };
+
       UserMock.expects('save').yields(null, expectedResult);
       await user.save((err, result) => {
         UserMock.verify();
