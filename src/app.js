@@ -22,7 +22,7 @@ const app = express();
 // Once connection is established
 mongoose.connection
   .once('open', () => {
-    console.log('Successfully connected to MongoDB');
+    console.log('Successfully connected to MongoDB'); // eslint-disable-line
 
     /* Start the Node server once connected to MongoDB */
     const PORT = process.env.PORT || 5000;
@@ -43,6 +43,7 @@ mongoose.connection
     });
 
     const server = app.listen(PORT, HOST, () => {
+      // eslint-disable-next-line
       console.log(
         `### Server is listening on PORT: ${server.address().port} ###`
       );
