@@ -7,8 +7,6 @@ const { mongodb } = require('./config');
 
 /* Logic to start the application */
 
-console.log('HOLLA', mongodb.uri);
-
 // Connect the db with the uri provided
 try {
   mongoose.connect(
@@ -20,18 +18,19 @@ try {
 }
 
 const app = express();
-app.use(urlencoded({ extended: false }));
-app.use(json()); // grabs request body
-app.use(morgan('dev')); // logs HTTP request
 
 // Once connection is established
 mongoose.connection
   .once('open', () => {
-    console.log('Successfully connected to MongoDB');
+    console.log('Successfully connected to MongoDB'); // eslint-disable-line
 
     /* Start the Node server once connected to MongoDB */
     const PORT = process.env.PORT || 5000;
     const HOST = process.env.HOST || '127.0.0.1';
+
+    app.use(urlencoded({ extended: false }));
+    app.use(json()); // grabs request body
+    app.use(morgan('dev')); // logs HTTP request
 
     // attaches all routes to the app
     app.use('/', routeHandler());
@@ -44,6 +43,7 @@ mongoose.connection
     });
 
     const server = app.listen(PORT, HOST, () => {
+      // eslint-disable-next-line
       console.log(
         `### Server is listening on PORT: ${server.address().port} ###`
       );

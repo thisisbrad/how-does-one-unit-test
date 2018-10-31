@@ -14,7 +14,7 @@ const deleteTodo = async (req, res) => {
   try {
     const { todoId, userId } = req.params;
     const user = await User.findById(userId);
-    user.todos = user.todos.filter(todo => todo._id.toString() !== todoId);
+    user.todos = user.todos.filter(todo => todo._id.toString() !== todoId); // eslint-disable-line
     await user.save();
     res.json({ success: `Removed ${todoId} from todos.` });
   } catch (error) {
@@ -43,4 +43,5 @@ const fetchTodos = async (req, res) => {
   res.json({ todos: results.todos });
 };
 
+// eslint-disable-next-line
 module.exports = { createTodo, deleteTodo, updateTodo, fetchTodos };
