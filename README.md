@@ -1,5 +1,7 @@
 # how-does-one-unit-test
 
+[![CircleCI](https://circleci.com/gh/thisisbrad/how-does-one-unit-test/tree/master.svg?style=svg)](https://circleci.com/gh/thisisbrad/how-does-one-unit-test/tree/master)
+
 Describe basic unit testing in NodeJS. This project is a simple Express server using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/) for testing. This working example has been built for students wanting to write tests on open source projects during [Hacktoberfest](https://hacktoberfest.digitalocean.com/) for practice with testing and contributing.
 
 ##### Table of Contents
@@ -35,7 +37,7 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 - [x] Create unit test example in Mocha and Chai
 - [x] Proper Git workflow with feature branches and pull request
 - [x] Create intergation test example with MongoDB and Supertest
-- [ ] Mock intergation test example with Sinon
+- [x] Mock intergation test example with Sinon
 - [ ] Add in Circle CI for testing code once pushed to Github
 - [ ] Deploy to Heroku if test passes
 
