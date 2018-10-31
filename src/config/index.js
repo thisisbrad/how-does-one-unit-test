@@ -1,6 +1,6 @@
-const dev = require('./dev');
-const prod = require('./prod');
-const test = require('./test');
+// const dev = require('./dev');
+// const prod = require('./prod');
+// const test = require('./test');
 
 const appname = 'Poovey';
 
@@ -11,11 +11,12 @@ const settings = {
 // Figures out what set of credentials to return based on enviroment
 switch (process.env.NODE_ENV) {
   case 'development':
-    module.exports = dev(settings);
+    module.exports = require('./dev')(settings);
     break;
   case 'test':
-    module.exports = test(settings);
+    module.exports = require('./test');
+    settings;
     break;
   default:
-    module.exports = prod(settings);
+    module.exports = require('./prod')(settings);
 }
