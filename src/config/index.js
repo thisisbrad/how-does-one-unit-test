@@ -14,8 +14,7 @@ switch (process.env.NODE_ENV) {
     module.exports = require('./dev')(settings);
     break;
   case 'test':
-    module.exports = require('./test');
-    settings;
+    module.exports = require('./test')(settings);
     break;
   default:
     module.exports = require('./prod')(settings);
