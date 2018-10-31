@@ -4,8 +4,11 @@ const createTodo = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findById(userId);
   const { todo } = req.body;
+  console.log('todo', todo);
   const count = user.todos.push(todo);
   await user.save();
+  console.log('todos', user.todos);
+
   const { _id: id, title, checked } = user.todos[count - 1];
   res.json({ todo: { id, title, checked } });
 };
@@ -39,7 +42,6 @@ const updateTodo = async (req, res) => {
 const fetchTodos = async (req, res) => {
   const { userId } = req.params;
   const results = await User.findById(userId);
-  console.log('id', results);
 
   res.json({ todos: results.todos });
 };

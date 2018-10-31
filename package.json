@@ -30,7 +30,8 @@
     "mocha": "^5.2.0",
     "mongoose": "^5.3.6",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.5"
+    "nodemon": "^1.18.5",
+    "supertest": "^3.3.0"
   },
   "devDependencies": {
     "eslint": "^5.7.0",

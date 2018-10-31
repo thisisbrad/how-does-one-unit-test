@@ -19,15 +19,14 @@ try {
   mongoose.createConnection(mongodb.uri, { useNewUrlParser: true });
 }
 
+const app = express();
+
 // Once connection is established
 mongoose.connection
   .once('open', () => {
     console.log('Successfully connected to MongoDB');
 
     /* Start the Node server once connected to MongoDB */
-
-    const app = express();
-
     const PORT = process.env.PORT || 5000;
     const HOST = process.env.HOST || '127.0.0.1';
 
@@ -53,3 +52,5 @@ mongoose.connection
   .on('error', error => {
     throw error;
   });
+
+module.exports = app;
