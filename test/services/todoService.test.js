@@ -5,14 +5,19 @@ const app = require('../../src/app');
 
 describe('Todos list API Integration Tests', () => {
   let userId = '';
+  let todoId = '';
+  const payload = {
+    todo: { title: 'mow grass' }
+  };
 
   beforeEach(async () => {
     const ricky = new User({
       name: 'Ricky',
-      todos: [{ title: 'Get Grade 10', checked: true }]
+      todos: [{ title: 'Get Grade 10', checked: false }]
     }); // create new User for each test
     await ricky.save(); // saves user to MongoDB to test querying
     userId = ricky._id;
+    todoId = ricky.todos[0]._id;
   });
 
   describe('#GET /todos - fecth todos', () => {
@@ -25,28 +30,35 @@ describe('Todos list API Integration Tests', () => {
   });
 
   describe('#POST /todos - create task ', () => {
-    const todo = {
-      title: 'mow grass'
-    };
-
     it('should create a task', async () => {
-      try {
-        const res = await request(app)
-          .post(`/todos/${userId}`)
-          .type('json')
-          .set('Content-Type', 'application/json')
-          .send({ title: 'lame' });
-        console.log('DATA???', res.body);
-      } catch (error) {
-        console.log('error', error);
-      }
+      const res = await request(app)
+        .post(`/todos/${userId}`)
+        .send(payload);
 
-      // .end((err, res) => {
-      //   expect(res.statusCode).to.equal(200);
-      //   expect(res.body.name).to.equal('integration test');
-      //   task = res.body;
-      //   done();
-      // });
+      const { todo } = res.body;
+      assert.strictEqual(res.statusCode, 200);
+      assert.propertyVal(todo, 'title', 'mow grass');
+    });
+  });
+
+  describe('#PATCH /todos update a todo by index in array', () => {
+    it('should modify a task', async () => {
+      const index = 0;
+      const res = await request(app)
+        .patch(`/todos/${userId}`)
+        .send({ index });
+      const todo = res.body;
+
+      assert.strictEqual(res.statusCode, 200);
+      assert.isBoolean(todo.checked);
+      assert.isTrue(todo.checked);
+    });
+  });
+
+  describe('#DELETE /todos/:userId/:todoId - remove a todo by id', () => {
+    it('should delete a task', async () => {
+      const res = await request(app).delete(`/todos/${userId}/${todoId}`);
+      assert.strictEqual(res.statusCode, 200);
     });
   });
 });
