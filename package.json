@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node src/app.js",
     "dev": "NODE_ENV=development nodemon src/app.js",
-    "test": "NODE_ENV=development mocha --recursive './test/**/*.js' --exit --no-deprecation"
+    "test": "NODE_ENV=test mocha --recursive './test/**/*.js' --exit --no-deprecation"
   },
   "repository": {
     "type": "git",
