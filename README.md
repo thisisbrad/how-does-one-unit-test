@@ -35,8 +35,8 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 - [x] Create unit test example in Mocha and Chai
 - [x] Proper Git workflow with feature branches and pull request
 - [x] Create intergation test example with MongoDB and Supertest
-- [ ] Mock intergation test example with Sinon
-- [ ] Add in Circle CI for testing code once pushed to Github
+- [x] Mock intergation test example with Sinon
+- [x] Add in Circle CI for testing code once pushed to Github
 - [ ] Deploy to Heroku if test passes
 
 ### 📦 Packages:
