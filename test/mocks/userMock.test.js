@@ -22,6 +22,7 @@ describe('Mock Testing of Mongoose Model', () => {
         email: 'ricky@sunnyvale.com',
         todos: []
       }; // object used to test against
+
       UserMock.expects('find').yields(null, expectedResult); // what .find() is expected to return
 
       // eslint-disable-next-line
@@ -38,6 +39,7 @@ describe('Mock Testing of Mongoose Model', () => {
       const expectedResult = {
         error: 'User does not exist'
       }; // object used to test against
+
       UserMock.expects('find').yields(expectedResult, null); // what .find() is expected to return
 
       // eslint-disable-next-line
@@ -112,9 +114,11 @@ describe('Mock Testing of Mongoose Model', () => {
       const UserMock = sinon.mock(ricky);
       const user = UserMock.object;
       const expectedResult = { success: 'Removed 12345 from todos.' };
+
       UserMock.expects('remove')
         .withArgs({ _id: 12345 })
         .yields(null, expectedResult);
+
       user.remove({ _id: 12345 }, (err, result) => {
         UserMock.verify();
         UserMock.restore();
@@ -154,7 +158,6 @@ describe('Mock Testing of Mongoose Model', () => {
     it('should create new User', async () => {
       const UserMock = sinon.mock(ricky);
       const user = UserMock.object;
-
       const expectedResult = {
         name: 'Ricky',
         email: 'ricky@sunnyvale.com',
@@ -162,6 +165,7 @@ describe('Mock Testing of Mongoose Model', () => {
       };
 
       UserMock.expects('save').yields(null, expectedResult);
+
       await user.save((err, result) => {
         UserMock.verify();
         UserMock.restore();
@@ -175,7 +179,9 @@ describe('Mock Testing of Mongoose Model', () => {
       const TodoMock = sinon.mock(ricky);
       const todo = TodoMock.object;
       const expectedResult = { error: 'Email is already taken.' };
+
       TodoMock.expects('save').yields(expectedResult, null);
+
       await todo.save((err, result) => {
         TodoMock.verify();
         TodoMock.restore();
