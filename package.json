@@ -1,6 +1,6 @@
 {
   "name": "how-does-one-unit-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Basic testing in Node with Mocha",
   "main": "src/app.js",
   "engines": {
