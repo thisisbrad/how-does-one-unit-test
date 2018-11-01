@@ -4,7 +4,7 @@
   "description": "Basic testing in Node with Mocha",
   "main": "src/app.js",
   "engines": {
-    "node": "10.11.0",
+    "node": "10.13.0",
     "npm": "6.4.1"
   },
   "scripts": {

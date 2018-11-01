@@ -1,7 +1,3 @@
-// const dev = require('./dev');
-// const prod = require('./prod');
-// const test = require('./test');
-
 const appname = 'Poovey';
 
 const settings = {
