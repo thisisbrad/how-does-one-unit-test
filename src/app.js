@@ -6,6 +6,7 @@ const routeHandler = require('./routes');
 const { mongodb } = require('./config');
 
 /* Logic to start the application */
+console.log('Altas URI?', mongodb.uri);
 
 // Connect the db with the uri provided
 try {
