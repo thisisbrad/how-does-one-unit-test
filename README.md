@@ -39,7 +39,7 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 - [x] Create intergation test example with MongoDB and Supertest
 - [x] Mock intergation test example with Sinon
 - [x] Add in Circle CI for testing code once pushed to Github
-- [x] Deploy to Heroku if test passes
+- [ ] Deploy to Heroku if test passes
 
 ### 📦 Packages:
 
