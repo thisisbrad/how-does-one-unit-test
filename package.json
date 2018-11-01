@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Basic testing in Node with Mocha",
   "main": "src/app.js",
+  "engines": {
+    "node": "10.12.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "start": "NODE_ENV=production node src/app.js",
     "dev": "NODE_ENV=development nodemon src/app.js",
