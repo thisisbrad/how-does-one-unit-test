@@ -101,6 +101,10 @@ module.exports = settings => ({
 });
 ```
 
+### CircleCI and Heroku Setup
+
+TODO: Outline setting up CircleCI and Heroku
+
 ### 🛠 Tools:
 
 These tools are optional but really help with testing and code coverage.
