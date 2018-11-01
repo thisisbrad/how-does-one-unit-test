@@ -27,7 +27,7 @@ mongoose.connection
 
     /* Start the Node server once connected to MongoDB */
     const PORT = process.env.PORT || 5000;
-    const HOST = process.env.HOST || '127.0.0.1';
+    // const HOST = process.env.HOST || '127.0.0.1';
 
     app.use(urlencoded({ extended: false }));
     app.use(json()); // grabs request body
@@ -43,7 +43,7 @@ mongoose.connection
       next(err);
     });
 
-    const server = app.listen(PORT, HOST, () => {
+    const server = app.listen(PORT, () => {
       // eslint-disable-next-line
       console.log(
         `### Server is listening on PORT: ${server.address().port} ###`
