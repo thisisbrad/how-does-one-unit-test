@@ -2,6 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/thisisbrad/how-does-one-unit-test/tree/master.svg?style=svg)](https://circleci.com/gh/thisisbrad/how-does-one-unit-test/tree/master)
 
+## Node Testing for Hacktoberfest 2020
+
+This is a basic group of Node routes and Mongo models setup for testing. You're welcome to create a test suite for the routes and models. Create a issue outlining the tests you aim to complete, then submit a PR that covers it.
+
 Describe basic unit testing in NodeJS. This project is a simple Express server using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/) for testing. This working example has been built for students wanting to write tests on open source projects during [Hacktoberfest](https://hacktoberfest.digitalocean.com/) for practice with testing and contributing.
 
 ##### Table of Contents
@@ -31,6 +35,10 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
   - Write nested `it()` in the `describe()` block
     - Use Chai to assert functionality of feature inside `it()` block
   - If needed, write your `before()/etc` hooks. Inside or outside of the `describe()` block | [Docs](https://mochajs.org/#hooks)
+- To submit your own test cases. If all cases are covered, feel free to create a new Model to test or new Node routes.
+  - Write a test suite outlined above
+  - Write out comments and steps for your testing as an exmaple to others to see.
+  - Create your own feature branch then attach your issue to the pull request.
 
 ### 🏆 Goals:
 
@@ -40,6 +48,7 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 - [x] Mock intergation test example with Sinon
 - [x] Add in Circle CI for testing code once pushed to Github
 - [x] Deploy to Heroku if test passes
+- [ ] Add new test cases for Hacktoberfest
 
 ### 📦 Packages:
 
@@ -95,9 +104,9 @@ You will need to create `dev.js` in `config/`.
 ```js
 module.exports = settings => ({
   mongodb: {
-    uri: 'mongodb://localhost:27017/#YOUR-MONGO-DB#'
+    uri: 'mongodb://localhost:27017/#YOUR-MONGO-DB#',
   },
-  ...settings
+  ...settings,
 });
 ```
 
