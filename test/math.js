@@ -23,7 +23,7 @@ describe('Usage of Math', function () {
   });
 
   describe('height of an equalateral triangle', function () {
-    it.only('Returns the largest integer less than or equal to 5.', function () {
+    it('Returns the largest integer less than or equal to 5.', function () {
       const degToRad = 60 * (Math.PI / 180);
       const height = 50 * Math.tan(degToRad);
       expect(height).to.be.equal(86.60254037844383);
