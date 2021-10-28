@@ -1,12 +1,12 @@
 {
   "name": "how-does-one-unit-test",
-  "version": "1.0.1",
+  "version": "0.1.1",
   "description": "Basic testing in Node with Mocha",
   "main": "src/app.js",
   "scripts": {
     "start": "NODE_ENV=production node src/app.js",
     "dev": "NODE_ENV=development nodemon src/app.js",
-    "test": "NODE_ENV=test mocha --recursive './test/**/*.js' --exit --no-deprecation"
+    "test": "NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   },
   "keywords": [
     "Node",
-    "Mocha",
+    "Jest",
     "Testing"
   ],
   "author": "Brad Beltowski",
