@@ -3,10 +3,6 @@
   "version": "1.0.1",
   "description": "Basic testing in Node with Mocha",
   "main": "src/app.js",
-  "engines": {
-    "node": "10.12.0",
-    "npm": "6.4.1"
-  },
   "scripts": {
     "start": "NODE_ENV=production node src/app.js",
     "dev": "NODE_ENV=development nodemon src/app.js",
@@ -28,20 +24,19 @@
   },
   "homepage": "https://github.com/thisisbrad/how-does-one-unit-test#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "chai": "^4.2.0",
-    "express": "^4.16.4",
-    "mocha": "^5.2.0",
-    "mongoose": "^5.3.6",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.18.5",
-    "sinon": "^7.1.1",
-    "sinon-mongoose": "^2.2.1",
-    "supertest": "^3.3.0"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.12",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.19.4",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "jest": "^27.3.1"
   }
 }
