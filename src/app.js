@@ -10,13 +10,14 @@ console.log('Altas URI?', mongodb.uri);
 
 // Connect the db with the uri provided
 try {
-  mongoose.connect(
-    mongodb.uri,
-    { useNewUrlParser: true }
-  );
+  mongoose.connect(mongodb.uri, { useNewUrlParser: true });
 } catch (err) {
   mongoose.createConnection(mongodb.uri, { useNewUrlParser: true });
 }
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 const app = express();
 
