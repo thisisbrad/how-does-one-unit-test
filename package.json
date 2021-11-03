@@ -31,7 +31,7 @@
     "mongoose": "^5.13.12",
     "morgan": "^1.10.0",
     "nodemon": "^1.19.4",
-    "validator": "^13.6.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "eslint": "^5.7.0",
