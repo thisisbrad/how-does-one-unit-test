@@ -2,17 +2,17 @@
 
 [![CircleCI](https://circleci.com/gh/thisisbrad/how-does-one-unit-test/tree/master.svg?style=svg)](https://circleci.com/gh/thisisbrad/how-does-one-unit-test/tree/master)
 
-## Node Testing for Hacktoberfest 2020
+## Node Testing for Hacktoberfest 2022
 
-This is a basic group of Node routes and Mongo models setup for testing. You're welcome to create a test suite for the routes and models. Create a issue outlining the tests you aim to complete, then submit a PR that covers it.
+This is a basic group of Node routes and Postgres models setup for testing. You're welcome to create a test suite for the routes and models. Create a issue outlining the tests you aim to complete, then submit a PR that covers it.
 
-Describe basic unit testing in NodeJS. This project is a simple Express server using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/) for testing. This working example has been built for students wanting to write tests on open source projects during [Hacktoberfest](https://hacktoberfest.digitalocean.com/) for practice with testing and contributing.
+Describe basic unit testing in NodeJS. This project is a simple Express server using [Jest](https://jestjs.io/) for testing. This working example has been built for students wanting to write tests on open source projects during [Hacktoberfest](https://hacktoberfest.digitalocean.com/) for practice with testing and contributing.
 
 ##### Table of Contents
 
 <!-- toc -->
 
-- [🔬 NodeJS and Mocha Guide to Unit Testing](#-nodejs-and-mocha-guide-to-unit-testing)
+- [🔬 NodeJS and Jest Guide to Unit Testing](#-nodejs-and-jest-guide-to-unit-testing)
 - [✏️ Steps for Unit Testing](#️-steps-for-unit-testing)
 - [🏆 Goals](#-goals)
 - [📦 Packages](#-packages)
@@ -20,21 +20,21 @@ Describe basic unit testing in NodeJS. This project is a simple Express server u
 
 <!-- tocstop -->
 
-### 🔬 NodeJS and Mocha Guide to Unit Testing
+### 🔬 NodeJS and Jest Guide to Unit Testing
 
 The main objective is to explain and use describe(), it(), and before()/etc hooks.
 
 1. `describe()` is merely for grouping, which you can nest as deep as you need
 2. `it()` is a test case for the feature
-3. `before()`, `beforeEach()`, `after()`, `afterEach()` are hooks to run before/after first/each it() or describe(). Which means, `before()` is run before first it()/describe()
+3. `beforeEach()`, `afterEach()` are hooks to run before/after first/each it() or describe(). Which means, `beforeEach()` will run before very it()/describe()
 
 ### ✏️ Steps for Unit Testing
 
 - create `#feature#.test.js` in `/test`
-  - Write `describe()` block using Mocha's BDD style interface | [Docs](https://mochajs.org/#bdd)
+  - Write `describe()` block using Jest's BDD style interface | Behavior-driven development (BDD)
   - Write nested `it()` in the `describe()` block
-    - Use Chai to assert functionality of feature inside `it()` block
-  - If needed, write your `before()/etc` hooks. Inside or outside of the `describe()` block | [Docs](https://mochajs.org/#hooks)
+    - Use Jest Matcher functions to assert functionality of feature inside `it()` block | [Jest Matches](https://jestjs.io/docs/using-matchers)
+  - If needed, write your `before()/etc` hooks. Inside or outside of the `describe()` block | [Setup and Teardown](https://jestjs.io/docs/setup-teardown)
 - To submit your own test cases. If all cases are covered, feel free to create a new Model to test or new Node routes.
   - Write a test suite outlined above
   - Write out comments and steps for your testing as an exmaple to others to see.
@@ -42,60 +42,49 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 
 ### 🏆 Goals:
 
-- [x] Create unit test example in Mocha and Chai
+- [x] Create unit test example in Jest
 - [x] Proper Git workflow with feature branches and pull request
-- [x] Create intergation test example with MongoDB and Supertest
-- [x] Mock intergation test example with Sinon
-- [x] Add in Circle CI for testing code once pushed to Github
-- [x] Deploy to Heroku if test passes
+- [x] Create intergation test example with Postgres and Supertest
+- [ ] Add in GitHub Actions for testing code once pushed to Github
+- [ ] Deploy to AWS if test passes
 - [ ] Add new test cases for Hacktoberfest
 
 ### 📦 Packages:
 
-You will need Node and MongoDB installed. Using **Node v10.11.0** and **Mongodb v4.0.2** for this demo.
-If you don't have these installed follow this [guide](#guide-to-install-node-and-mongodb).
+You will need Node and Postgres installed. Using **Node v18.12.0** and **Postgres v15** for this demo.
+If you don't have these installed follow this [guide](#guide-to-install-node-and-postgres).
 
 Use yarn or npm to install the following packahes. Testing will require these packages:
 
-- [mocha](https://mochajs.org/)
-- [chai](https://www.chaijs.com/)
-- [sinon](https://sinonjs.org/)
-- [express](https://expressjs.com/)
-- [mongoose](https://mongoosejs.com/)
-- [eslint](https://eslint.org/)
+- [Jest](https://jestjs.io/)
+- [Express](https://expressjs.com/)
+- [Postgres](https://www.postgresql.org/)
+- [Sequelize](https://sequelize.org/)
+- [Docker](https://www.docker.com/)
+- [ESlint](https://eslint.org/)
 
 TD;LR
 
-`npm install mocha chai sinon express mongoose`
+`npm install jest express sequelize`
 
-`yarn add mocha chai sinon express mongoose`
+`yarn add jest express sequelize`
 
-#### Guide to Install Node and MongoDB
+#### Guide to Install Node and Postgres
 
 Install NodeJS via [nvm](https://github.com/creationix/nvm)
 
-`curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash`
 
 - `nvm install stable`
 - `nvm use stable`
 - `which node` || `node -v` should now show your version
 
-Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/index.html#install-mongodb-community-edition-with-homebrew) via [Homebrew](https://brew.sh/)
-
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-
-- `brew update`
-- `brew install mongodb`
-- `mkdir -p /data/db`
-- `whoami` to get your username on the computer
-- `chown *WHOAMI-RESULT* /data/db`
-- `brew services start mongo` now MongoDB will remain running in the background
+Install [Postgres](https://www.postgresql.org/download/macosx/) via [Postgres App for Mac](https://postgresapp.com/) use [Postico](https://eggerapps.at/postico2/) for GUI.
 
 `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
 
-- `nvm install stable`
-- `nvm use stable`
-- `which node` || `node -v` should now show your version
+- Download Posgresapp and follow install instructions.
+- `sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp`
 
 ### 🔑 Keys:
 
@@ -103,20 +92,27 @@ You will need to create `dev.js` in `config/`.
 
 ```js
 module.exports = settings => ({
-  mongodb: {
-    uri: 'mongodb://localhost:27017/#YOUR-MONGO-DB#',
+  postgres: {
+    pgUser: 'root',
+    pgHost: '127.0.0.1',
+    pgDatabase: postgres,
+    pgPassword: postgres_password,
   },
   ...settings,
 });
 ```
 
-### CircleCI and Heroku Setup
+### Docker Setup
 
-TODO: Outline setting up CircleCI and Heroku
+TODO: Outline setting up Docker container
+
+### GitHub Actions and Railway Setup
+
+TODO: Outline setting up Github and Railway
 
 ### 🛠 Tools:
 
 These tools are optional but really help with testing and code coverage.
 
 - [VSCode](https://code.visualstudio.com/)
-- [VSCode Mocha Sidebar](https://marketplace.visualstudio.com/items?itemName=maty.vscode-mocha-sidebar)
+- [VSCode Docker extention](https://code.visualstudio.com/docs/containers/overview)

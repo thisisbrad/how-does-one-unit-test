@@ -1,119 +1,39 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true,
-      lowercase: true,
-      validate(value) {
-        if (!validator.isEmail(value)) {
-          throw new Error('Email is invalid');
-        }
-      },
-    },
-    password: {
-      type: String,
-      required: true,
-      minlength: 7,
-      trim: true,
-      validate(value) {
-        if (value.toLowerCase().includes('password')) {
-          throw new Error('Password cannot contain "password"');
-        }
-      },
-    },
-    age: {
-      type: Number,
-      default: 0,
-      validate(value) {
-        if (value < 0) {
-          throw new Error('Age must be a postive number');
-        }
-      },
-    },
-    tokens: [
-      {
-        token: {
-          type: String,
-          required: true,
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Users = sequelize.define(
+    'Users',
+    {
+      id: {
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        validate: {
+          isUUID: { args: 4, msg: 'Id not valid, please try again' },
         },
       },
-    ],
-    avatar: {
-      type: Buffer,
+      email: {
+        type: DataTypes.STRING,
+        unique: { args: true, msg: 'Email is already in use' },
+        allowNull: { args: false, msg: 'Email is required' },
+        validate: {
+          isEmail: { args: true, msg: 'Email is not correct format' },
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: { args: false, msg: 'Password is required' },
+        // validate: {
+        //   len: {
+        //     args: [2, 10],
+        //     msg: 'Password needs to be between 2-10 characters',
+        //   },
+        // },
+      },
     },
-  },
-  {
-    timestamps: true,
-  }
-);
-
-userSchema.methods.toJSON = function () {
-  const user = this;
-  const userObject = user.toObject();
-
-  delete userObject.password;
-  delete userObject.tokens;
-  delete userObject.avatar;
-
-  return userObject;
+    {}
+  );
+  Users.associate = function (models) {
+    // associations can be defined here
+  };
+  return Users;
 };
-
-userSchema.methods.generateAuthToken = async function () {
-  const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
-
-  user.tokens = user.tokens.concat({ token });
-  await user.save();
-
-  return token;
-};
-
-userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    throw new Error('Unable to login');
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password);
-
-  if (!isMatch) {
-    throw new Error('Unable to login');
-  }
-
-  return user;
-};
-
-// Hash the plain text password before saving
-userSchema.pre('save', async function (next) {
-  const user = this;
-
-  if (user.isModified('password')) {
-    user.password = await bcrypt.hash(user.password, 8);
-  }
-
-  next();
-});
-
-// Delete user tasks when user is removed
-userSchema.pre('remove', async function (next) {
-  const user = this;
-  await Task.deleteMany({ owner: user._id });
-  next();
-});
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
