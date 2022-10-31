@@ -94,7 +94,7 @@ You will need to create `dev.js` in `config/`.
 module.exports = settings => ({
   postgres: {
     pgUser: 'root',
-    pgHost: ,
+    pgHost: '127.0.0.1',
     pgDatabase: postgres,
     pgPassword: postgres_password,
   },
