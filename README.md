@@ -12,7 +12,7 @@ Describe basic unit testing in NodeJS. This project is a simple Express server u
 
 <!-- toc -->
 
-- [🔬 NodeJS and Jest Guide to Unit Testing](#-nodejs-and-mocha-guide-to-unit-testing)
+- [🔬 NodeJS and Jest Guide to Unit Testing](#-nodejs-and-jest-guide-to-unit-testing)
 - [✏️ Steps for Unit Testing](#️-steps-for-unit-testing)
 - [🏆 Goals](#-goals)
 - [📦 Packages](#-packages)
@@ -26,7 +26,7 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 
 1. `describe()` is merely for grouping, which you can nest as deep as you need
 2. `it()` is a test case for the feature
-3. `beforeEach()`, `afterEach()` are hooks to run before/after first/each it() or describe(). Which means, `before()` is run before first it()/describe()
+3. `beforeEach()`, `afterEach()` are hooks to run before/after first/each it() or describe(). Which means, `beforeEach()` will run before very it()/describe()
 
 ### ✏️ Steps for Unit Testing
 
@@ -45,14 +45,14 @@ The main objective is to explain and use describe(), it(), and before()/etc hook
 - [x] Create unit test example in Jest
 - [x] Proper Git workflow with feature branches and pull request
 - [x] Create intergation test example with Postgres and Supertest
-- [ ] Add in Circle CI for testing code once pushed to Github
+- [ ] Add in GitHub Actions for testing code once pushed to Github
 - [ ] Deploy to AWS if test passes
 - [ ] Add new test cases for Hacktoberfest
 
 ### 📦 Packages:
 
 You will need Node and Postgres installed. Using **Node v18.12.0** and **Postgres v15** for this demo.
-If you don't have these installed follow this [guide](#guide-to-install-node-and-mongodb).
+If you don't have these installed follow this [guide](#guide-to-install-node-and-postgres).
 
 Use yarn or npm to install the following packahes. Testing will require these packages:
 
@@ -101,6 +101,10 @@ module.exports = settings => ({
   ...settings,
 });
 ```
+
+### Docker Setup
+
+TODO: Outline setting up Docker container
 
 ### GitHub Actions and Railway Setup
 
