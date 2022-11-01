@@ -1,0 +1,10 @@
+{
+  "env": {
+    "DEBUG": "api:*",
+    "pgUser": "root",
+    "pgHost": "127.0.0.1",
+    "pgDatabase": "postgres",
+    "pgPassword": "postgres_password",
+    "pgPort": "8052"
+  }
+}
