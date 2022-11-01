@@ -1,25 +1,69 @@
-// const User = require('../../src/models/User');
+const User = require('../src/models/User');
 
-// describe('User Model', () => {
-//   describe('Reading User data from database', () => {
-//     let ricky; // User object to be tested in suite
-//     const query = { name: 'Ricky' }; // reuseable query
+describe('Updating Users from the database', () => {
+  let bob;
 
-//     beforeEach(async () => {
-//       ricky = new User({
-//         name: 'Ricky',
-//         todos: [{ title: 'Get Grade 10', checked: true }],
-//       }); // create new User for each test
-//       await ricky.save(); // saves user to MongoDB to test querying
-//     });
+  beforeEach(async () => {
+    bob = await new User({ name: 'Bob', likes: 0 });
+    await bob.save();
+  });
 
-//     it('finds all users with the name Ricky', async () => {
-//       // const users = await User.find(query); // find all users with name Ricky
-//     });
+  const assertName = (operation, done) => {
+    operation
+      .then(() => User.find({}))
+      .then(users => {
+        expect(users.length === 1);
+        expect(users[0].name === 'Alex');
+        done();
+      });
+  };
 
-//     it('finds the user by ID', async () => {
-//       // const { _id } = ricky;
-//       // const user = await User.findById(_id);
-//     });
-//   });
-// });
+  it('expects with helper function', done => {
+    // testing helper
+    bob.set('name', 'Alex');
+    expectName(bob.save(), done);
+  });
+
+  it('updates by instance using set n save', done => {
+    // Update record using set and save methods
+    bob.set('name', 'Alex');
+    bob
+      .save()
+      .then(() => User.find({}))
+      .then(users => {
+        expect(users.length === 1);
+        expect(users[0].name === 'Alex');
+        done();
+      });
+  });
+
+  it('updates by model instance', done => {
+    //
+    expectName(bob.update({ name: 'Alex' }), done);
+  });
+
+  it('updates by model class', done => {
+    //
+    expectName(User.update({ name: 'Bob' }, { name: 'Alex' }), done);
+  });
+
+  it('can find and update by model class', done => {
+    //
+    expectName(User.findOneAndUpdate({ name: 'Bob' }, { name: 'Alex' }), done);
+  });
+
+  it('can find and update with ID by model class', done => {
+    //
+    expectName(User.findByIdAndUpdate(bob._id, { name: 'Alex' }), done);
+  });
+
+  it('can increment likes by 1', done => {
+    //
+    User.update({ name: 'Bob' }, { $inc: { likes: 1 } })
+      .then(() => User.findOne({ name: 'Bob' }))
+      .then(user => {
+        expect(user.likes === 1);
+        done();
+      });
+  });
+});
