@@ -1,7 +1,9 @@
 // Prod Keys are okay -- DO NOT COMMIT Dev keys
 module.exports = settings => ({
-  mongodb: {
-    uri: process.env.MONGO_URI
-  },
-  ...settings
+  pgUser: process.env.PGUSER,
+  pgHost: process.env.PGHOST,
+  pgDatabase: process.env.PGDATABASE,
+  pgPassword: process.env.PGPASSWORD,
+  pgPort: process.env.PGPORT,
+  ...settings,
 });
